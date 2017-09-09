@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <declare-styleable name="GraphStyle">
+        <attr name="graphTitle" format="string"/>
+        <attr name="xAxisName" format="string"/>
+        <attr name="yAxisName" format="string"/>
+        <attr name="axisTextSize" format="dimension|integer"/>
+        <attr name="axisTextColor" format="color|integer"/>
+    </declare-styleable>
+
 </resources>
