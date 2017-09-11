@@ -14,7 +14,7 @@ import us.bojie.androidcharts.R;
  * Created by bojiejiang on 9/9/17.
  */
 
-public class BaseView extends View {
+public abstract class BaseView extends View {
 
     private Context mContext;
     private Paint mPaint;
@@ -75,5 +75,48 @@ public class BaseView extends View {
         super.onDraw(canvas);
         width = getWidth() - originalX;
         height = (originalY > getHeight() ? getHeight() : originalY) - 400;
+
+        drawXAxis(canvas, mPaint);
+        drawYAxis(canvas, mPaint);
+        drawTitle(canvas, mPaint);
+        drawXAxisScale(canvas, mPaint);
+        drawXAxisScaleValue(canvas, mPaint);
+        drawYAxisScale(canvas, mPaint);
+        drawYAxisScaleValue(canvas, mPaint);
+        drawXAxisArrow(canvas, mPaint);
+        drawYAxisArrow(canvas, mPaint);
+        drawColumn(canvas, mPaint);
     }
+
+    protected abstract void drawColumn(Canvas canvas, Paint paint);
+
+    private void drawYAxisArrow(Canvas canvas, Paint paint) {
+
+    }
+
+    private void drawXAxisArrow(Canvas canvas, Paint paint) {
+
+    }
+
+    protected abstract void drawYAxisScaleValue(Canvas canvas, Paint paint);
+
+    protected abstract void drawYAxisScale(Canvas canvas, Paint paint);
+
+    /**
+     * Draw X axis
+     *
+     * @param canvas
+     * @param paint
+     */
+    protected abstract void drawXAxis(Canvas canvas, Paint paint);
+
+    protected abstract void drawYAxis(Canvas canvas, Paint paint);
+
+    private void drawTitle(Canvas canvas, Paint paint) {
+        
+    }
+
+    protected abstract void drawXAxisScale(Canvas canvas, Paint paint);
+
+    protected abstract void drawXAxisScaleValue(Canvas canvas, Paint paint);
 }
