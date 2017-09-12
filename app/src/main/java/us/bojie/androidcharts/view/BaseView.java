@@ -93,7 +93,13 @@ public abstract class BaseView extends View {
     protected abstract void drawColumn(Canvas canvas, Paint paint);
 
     private void drawYAxisArrow(Canvas canvas, Paint paint) {
-
+        Path pathY = new Path();
+        pathY.moveTo(originalX, originalY - height - 30);
+        pathY.lineTo(originalX - 10, originalY - height);
+        pathY.lineTo(originalX + 10, originalY - height);
+        pathY.close();
+        canvas.drawPath(pathY, mPaint);
+        canvas.drawText(mYAxisName, originalX - 50, originalY - height - 30, mPaint);
     }
 
     private void drawXAxisArrow(Canvas canvas, Paint paint) {
