@@ -22,11 +22,11 @@ public abstract class BaseView extends View {
     private Paint mPaint;
 
     // View's width and height
-    private int width;
-    private int height;
+    protected int width;
+    protected int height;
 
-    private int originalX = 100;
-    private int originalY = 800;
+    protected int originalX = 100;
+    protected int originalY = 800;
 
     private String mGraphTitle;
     private String mXAxisName;
