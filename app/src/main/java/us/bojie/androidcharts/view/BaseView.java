@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -95,7 +97,14 @@ public abstract class BaseView extends View {
     }
 
     private void drawXAxisArrow(Canvas canvas, Paint paint) {
+        Path pathX = new Path();
+        pathX.moveTo(originalX + width + 30, originalY);
+        pathX.lineTo(originalX + width, originalY + 10);
+        pathX.lineTo(originalX + width, originalY - 10);
 
+        pathX.close();
+        canvas.drawPath(pathX, mPaint);
+        canvas.drawText(mXAxisName, originalX + width, originalY + 50, mPaint);
     }
 
     protected abstract void drawYAxisScaleValue(Canvas canvas, Paint paint);
@@ -113,7 +122,14 @@ public abstract class BaseView extends View {
     protected abstract void drawYAxis(Canvas canvas, Paint paint);
 
     private void drawTitle(Canvas canvas, Paint paint) {
-        
+        if (!TextUtils.isEmpty(mGraphTitle)) {
+            mPaint.setTextSize(mAxisTextSize);
+            mPaint.setColor(mAxisTextColor);
+            mPaint.setFakeBoldText(true);
+
+            canvas.drawText(mGraphTitle, (getWidth() / 2) - (mPaint.measureText(mGraphTitle)) / 2,
+                    originalY + 40, mPaint);
+        }
     }
 
     protected abstract void drawXAxisScale(Canvas canvas, Paint paint);
