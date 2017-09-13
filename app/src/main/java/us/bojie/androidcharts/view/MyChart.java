@@ -12,6 +12,8 @@ import android.util.AttributeSet;
  */
 
 public class MyChart extends BaseView {
+    private int axisDividedSizeX = 7;
+
     public MyChart(Context context) {
         super(context);
     }
@@ -55,11 +57,23 @@ public class MyChart extends BaseView {
 
     @Override
     protected void drawXAxisScale(Canvas canvas, Paint paint) {
-
+        float cellWidth = width / axisDividedSizeX;
+        for (int i = 0; i < axisDividedSizeX - 1; i++) {
+            canvas.drawLine(cellWidth * (i + 1) + originalX, originalY,
+                    cellWidth * (i + 1) + originalX, originalY - 10, paint);
+        }
     }
 
     @Override
     protected void drawXAxisScaleValue(Canvas canvas, Paint paint) {
+        paint.setColor(Color.GRAY);
+        paint.setTextSize(16);
+        paint.setFakeBoldText(true);
 
+        float cellWidth = width / axisDividedSizeX;
+        for (int i = 0; i < axisDividedSizeX - 1; i++) {
+            canvas.drawText(i + "", cellWidth * i + originalX - 35,
+                    originalY + 30, paint);
+        }
     }
 }
