@@ -13,6 +13,8 @@ import android.util.AttributeSet;
 
 public class MyChart extends BaseView {
     private int axisDividedSizeX = 7;
+    private int axisDividedSizeY = 10;
+    private int maxAxisValueY = 100;
 
     public MyChart(Context context) {
         super(context);
@@ -33,12 +35,21 @@ public class MyChart extends BaseView {
 
     @Override
     protected void drawYAxisScaleValue(Canvas canvas, Paint paint) {
-
+        float cellHeight = height / axisDividedSizeY;
+        float cellValue = maxAxisValueY / axisDividedSizeY;
+        for (int i = 1; i < axisDividedSizeY; i++) {
+            canvas.drawText(cellValue * i + "", originalX - 30,
+                    originalY - cellHeight * i + 10, paint);
+        }
     }
 
     @Override
     protected void drawYAxisScale(Canvas canvas, Paint paint) {
-
+        float cellHeight = height / axisDividedSizeY;
+        for (int i = 0; i < axisDividedSizeY - 1; i++) {
+            canvas.drawLine(originalX, originalY - cellHeight * (i + 1),
+                    originalX + 10, originalY - cellHeight * (i + 1), paint);
+        }
     }
 
     @Override
