@@ -30,7 +30,15 @@ public class MyChart extends BaseView {
 
     @Override
     protected void drawColumn(Canvas canvas, Paint paint) {
-
+        if (columnInfo != null) {
+            float cellWidth = width / axisDividedSizeX;
+            for (int i = 0; i < columnInfo.length; i++) {
+                paint.setColor(columnInfo[i][1]);
+                float leftTopY = originalY - height * (columnInfo[i][0] / axisDividedSizeY);
+                canvas.drawRect(originalX + cellWidth * (i + 1),
+                        leftTopY, originalX + cellWidth * (i + 2), originalY, paint);
+            }
+        }
     }
 
     @Override
