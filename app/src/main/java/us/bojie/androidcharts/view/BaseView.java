@@ -28,6 +28,10 @@ public abstract class BaseView extends View {
     protected int originalX = 100;
     protected int originalY = 800;
 
+    public int[][] columnInfo;
+    public float maxAxisValueY;
+    public float maxAxisValueX;
+
     private String mGraphTitle;
     private String mXAxisName;
     private String mYAxisName;
