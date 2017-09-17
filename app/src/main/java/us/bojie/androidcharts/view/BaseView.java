@@ -26,11 +26,14 @@ public abstract class BaseView extends View {
     protected int height;
 
     protected int originalX = 100;
-    protected int originalY = 800;
+    protected int originalY = 700;
 
     public int[][] columnInfo;
     public float maxAxisValueY;
     public float maxAxisValueX;
+    protected int axisDividedSizeX;
+    protected int axisDividedSizeY;
+
 
     private String mGraphTitle;
     private String mXAxisName;
@@ -145,4 +148,18 @@ public abstract class BaseView extends View {
     protected abstract void drawXAxisScale(Canvas canvas, Paint paint);
 
     protected abstract void drawXAxisScaleValue(Canvas canvas, Paint paint);
+
+    public void setColumnInfo(int[][] columnInfo) {
+        this.columnInfo = columnInfo;
+    }
+
+    public void setXAxisiScaleValue(float maxAisValueX, int axisDividedSizeX) {
+        this.maxAxisValueX = maxAisValueX;
+        this.axisDividedSizeX = axisDividedSizeX;
+    }
+
+    public void setYAxisiScaleValue(float maxAxisValueY, int axisDividedSizeY) {
+        this.maxAxisValueY = maxAxisValueY;
+        this.axisDividedSizeY = axisDividedSizeY;
+    }
 }

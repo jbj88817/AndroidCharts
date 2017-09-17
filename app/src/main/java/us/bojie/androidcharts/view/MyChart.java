@@ -12,9 +12,6 @@ import android.util.AttributeSet;
  */
 
 public class MyChart extends BaseView {
-    private int axisDividedSizeX = 7;
-    private int axisDividedSizeY = 10;
-    private int maxAxisValueY = 100;
 
     public MyChart(Context context) {
         super(context);
