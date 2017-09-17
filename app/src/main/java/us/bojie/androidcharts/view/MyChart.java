@@ -26,14 +26,20 @@ public class MyChart extends BaseView {
     }
 
     @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        width = getWidth() - originalX;
+        height = (originalY > getHeight() ? getHeight() : originalY) - 300;
+    }
+
+    @Override
     protected void drawColumn(Canvas canvas, Paint paint) {
         if (columnInfo != null) {
             float cellWidth = width / axisDividedSizeX;
             for (int i = 0; i < columnInfo.length; i++) {
                 paint.setColor(columnInfo[i][1]);
-                float leftTopY = originalY - height * (columnInfo[i][0] / axisDividedSizeY);
-                canvas.drawRect(originalX + cellWidth * (i + 1),
-                        leftTopY, originalX + cellWidth * (i + 2), originalY, paint);
+                float leftTopY = originalY - height * (columnInfo[i][0]) / axisDividedSizeY;
+                canvas.drawRect(originalX + cellWidth * (i + 1), leftTopY, originalX + cellWidth * (i + 2), originalY, paint);
             }
         }
     }
@@ -83,11 +89,11 @@ public class MyChart extends BaseView {
     @Override
     protected void drawXAxisScaleValue(Canvas canvas, Paint paint) {
         paint.setColor(Color.GRAY);
-        paint.setTextSize(16);
+        paint.setTextSize(24);
         paint.setFakeBoldText(true);
 
         float cellWidth = width / axisDividedSizeX;
-        for (int i = 0; i < axisDividedSizeX - 1; i++) {
+        for (int i = 0; i < axisDividedSizeX; i++) {
             canvas.drawText(i + "", cellWidth * i + originalX - 35,
                     originalY + 30, paint);
         }

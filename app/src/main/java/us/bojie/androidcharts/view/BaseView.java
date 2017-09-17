@@ -18,7 +18,6 @@ import us.bojie.androidcharts.R;
 
 public abstract class BaseView extends View {
 
-    private Context mContext;
     private Paint mPaint;
 
     // View's width and height
@@ -52,7 +51,6 @@ public abstract class BaseView extends View {
 
     public BaseView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mContext = context;
         // Get custom style
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.GraphStyle);
 
@@ -76,14 +74,15 @@ public abstract class BaseView extends View {
             mPaint = new Paint();
             mPaint.setDither(true);
             mPaint.setAntiAlias(true);
+            mPaint.setTextSize(24);
         }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        width = getWidth() - originalX;
-        height = (originalY > getHeight() ? getHeight() : originalY) - 400;
+        width = getWidth() - originalX - 100;
+        height = (originalY > getHeight() ? getHeight() : originalY) - 300;
 
         drawXAxis(canvas, mPaint);
         drawYAxis(canvas, mPaint);
@@ -135,7 +134,7 @@ public abstract class BaseView extends View {
     protected abstract void drawYAxis(Canvas canvas, Paint paint);
 
     private void drawTitle(Canvas canvas, Paint paint) {
-        if (!TextUtils.isEmpty(mGraphTitle)) {
+        if (TextUtils.isEmpty(mGraphTitle)) {
             mPaint.setTextSize(mAxisTextSize);
             mPaint.setColor(mAxisTextColor);
             mPaint.setFakeBoldText(true);
